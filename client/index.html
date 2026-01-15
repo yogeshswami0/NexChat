@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NexChat | Premium Communication</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+
+        <div id="auth-section">
+            <h1 style="color:var(--primary)">NexChat</h1>
+            <p style="color:var(--text-mute)">Sign in or create an account</p>
+
+            <div style="display:flex; gap:10px; justify-content:center; margin-bottom:14px;">
+                <button id="tabSignIn" class="btn-tab active" onclick="toggleAuth('in')">Sign In</button>
+                <button id="tabSignUp" class="btn-tab" onclick="toggleAuth('up')">Sign Up</button>
+            </div>
+
+            <div id="signInBox" class="auth-box">
+                <div class="input-group">
+                    <input type="email" id="loginEmail" placeholder="Email Address">
+                    <input type="password" id="loginPassword" placeholder="Password">
+                </div>
+                <button class="btn-primary" onclick="login()">Sign In</button>
+            </div>
+
+            <div id="signUpBox" class="auth-box" style="display:none; animation: slideIn .45s;">
+                <div class="input-group">
+                    <input type="text" id="regName" placeholder="Display Name">
+                    <input type="email" id="regEmail" placeholder="Email Address">
+                    <input type="password" id="regPassword" placeholder="Password">
+                    <input type="text" id="regAvatar" placeholder="Avatar URL (optional)">
+                </div>
+                <button class="btn-primary" onclick="register()">Create Account</button>
+            </div>
+        </div>
+
+    <div class="app-container" id="main-app">
+        <div id="sidebar">
+            <div style="padding: 25px; display: flex; align-items: center; gap: 15px;">
+                <img id="navMyAvatar" class="avatar-main" src="https://via.placeholder.com/50">
+                <div style="flex-grow: 1;">
+                    <b id="navMyName" style="display: block;">User</b>
+                    <small style="color: #10b981;">● Online</small>
+                </div>
+            </div>
+            
+            <div style="padding: 0 20px 15px;">
+                <input type="text" id="userSearch" onkeyup="filterUsers()" placeholder="Search conversations..." 
+                    style="width: 100%; border: none; background: #f1f5f9; padding: 10px; border-radius: 10px; outline: none;">
+            </div>
+
+            <ul id="user-list" style="list-style:none; padding:0; margin:0; flex-grow: 1; overflow-y: auto;"></ul>
+            
+            <div style="padding: 20px; text-align: center;">
+                <button onclick="logout()" style="background: none; border: none; color: #ef4444; font-weight: 600; cursor: pointer;">Logout</button>
+            </div>
+        </div>
+
+        <div id="chat-area">
+            <div id="chat-header" style="padding: 12px 20px; background: rgba(255,255,255,0.85); border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; gap:12px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img id="activeChatAvatar" src="https://via.placeholder.com/48" style="width:48px; height:48px; border-radius:12px; cursor:pointer; object-fit:cover;" onclick="openProfile()">
+                    <div>
+                        <b id="activeChatName" style="font-size: 1.05rem; display:block;">Select a Contact</b>
+                        <small id="activeChatStatus" style="color:#64748b;">No conversation selected</small>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+                <div style="background:white; padding:18px; border-radius:12px; max-width:420px; text-align:center;">
+                    <img id="modalAvatar" src="https://via.placeholder.com/300" style="width:200px; height:200px; object-fit:cover; border-radius:16px;">
+                    <div style="margin-top:12px;"><b id="modalName">User</b></div>
+                    <div style="margin-top:8px;"><button onclick="closeProfile()" style="margin-top:8px; padding:8px 12px; border-radius:10px; border:none; background:#ef4444; color:white; cursor:pointer;">Close</button></div>
+                </div>
+            </div>
+
+            <div id="message-container"></div>
+
+            <div class="input-bar">
+                <button onclick="document.getElementById('fileInput').click()" style="background:none; border:none; font-size: 20px; cursor:pointer;">📎</button>
+                <input type="file" id="fileInput" style="display:none;" onchange="uploadFile(this.files[0])">
+                
+                <input type="text" id="messageInput" placeholder="Type your message here...">
+                
+                <button onclick="sendMessage()" style="background:var(--primary); color:white; border:none; width: 45px; height: 45px; border-radius: 12px; cursor:pointer; font-size: 20px;">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/media.js"></script>
+</body>
+</html>

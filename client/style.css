@@ -1,0 +1,72 @@
+/* client/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 400px;
+}
+
+#chat-section {
+    display: none; /* Hidden by default until registered */
+}
+
+#message-container {
+    height: 300px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #e5ddd5; /* WhatsApp-like background */
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 80%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #25d366; /* WhatsApp green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #128c7e;
+}
+
+#status {
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
